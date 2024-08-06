@@ -2,26 +2,24 @@
 #include <iostream>
 using namespace std;
 
-// tc: best, worst, avg : o(n^2)
+// tc: worst, avg: o(n^2), best: o(n) for sorted array
 // sc: o(1)
 
-void selection_sort(int arr[], int n)
+void bubble_sort(int arr[], int n)
 {
-    // selection sort
-    for (int i = 0; i < n - 1; i++)
+    // bubble sort
+    for (int i = n - 1; i >= 0; i--)
     {
-        int mini = i;
-        for (int j = i + 1; j < n; j++)
+        for (int j = 0; j <= i - 1; j++)
         {
-            if (arr[j] < arr[mini])
+            if (arr[j] > arr[j + 1])
             {
-                mini = j;
+                swap(arr[j], arr[j+1]); // just swap 
             }
         }
-        swap(arr[mini], arr[i]);
     }
 
-    cout << "After selection sort: " << "\n";
+    cout << "After Using Bubble sort: " << "\n";
     for (int i = 0; i < n; i++)
     {
         cout << arr[i] << " ";
@@ -29,17 +27,17 @@ void selection_sort(int arr[], int n)
     cout << "\n";
 }
 
-
 int main()
 {
     int arr[] = {13, 46, 24, 52, 20, 9};
     int n = sizeof(arr) / sizeof(arr[0]);
-    cout << "Before selection sort: " << "\n";
+    cout << "Before Using Bubble sort: " << endl;
     for (int i = 0; i < n; i++)
     {
         cout << arr[i] << " ";
     }
-    cout << "\n";
-    selection_sort(arr, n);
+    cout << endl;
+
+    bubble_sort(arr, n);
     return 0;
 }
