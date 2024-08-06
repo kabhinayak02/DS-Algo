@@ -2,6 +2,8 @@
 #include <iostream>
 using namespace std;
 
+// tc: o(n^2) (best, worst, avg.)
+// sc: o(1)
 
 void selection_sort(int arr[], int n)
 {
