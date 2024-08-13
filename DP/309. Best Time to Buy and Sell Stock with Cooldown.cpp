@@ -3,11 +3,11 @@
 // sc: o(n)
 class Solution {
 public:
-    int dp[5001][2];
+    int t[5001][2];
     int solve(int day, bool buy, int n, vector<int>& prices){
         if(day >= n) return 0;
 
-        if(dp[day][buy] != -1) return dp[day][buy];
+        if(t[day][buy] != -1) return t[day][buy];
 
         int profit = 0;
         if(buy){
@@ -21,11 +21,11 @@ public:
             profit = max({profit, sell, notSell});
         }
 
-        return dp[day][buy] = profit;
+        return t[day][buy] = profit;
     }
     int maxProfit(vector<int>& prices) {
         int n = prices.size();
-        memset(dp, -1, sizeof(dp));
+        memset(t, -1, sizeof(t));
         return solve(0, true, n, prices);
     }
 };
@@ -39,18 +39,18 @@ public:
         int n = prices.size();
         if(n == 0 || n == 1) return 0;
 
-        vector<int> dp(n, 0);
-        dp[0] = 0;
-        dp[1] = max(prices[1]-prices[0], 0);
+        vector<int> t(n, 0);
+        t[0] = 0;
+        t[1] = max(prices[1]-prices[0], 0);
 
         for(int i=2; i<n; i++){
-            dp[i] = dp[i-1];
+            t[i] = t[i-1];
             for(int j=0; j<=i-1; j++){
                 int todayProfit = prices[i] - prices[j];
-                int prevProfit = (j >= 2)? dp[j-2] : 0;
-                dp[i] = max(dp[i], todayProfit+prevProfit);
+                int prevProfit = (j >= 2)? t[j-2] : 0;
+                t[i] = max(t[i], todayProfit+prevProfit);
             }
         }
-        return dp[n-1];
+        return t[n-1];
     }
 };
