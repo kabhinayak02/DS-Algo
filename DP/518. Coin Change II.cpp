@@ -1,3 +1,7 @@
+#include <vector>
+#include <unordered_map>
+using namespace std;
+
 // Recursion + Memoisation
 // tc: o(n*m) , n = coins.size, m = amount
 // sc: o(n*m), 
