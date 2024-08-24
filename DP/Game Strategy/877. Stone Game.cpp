@@ -36,3 +36,32 @@ public:
         
     }
 };
+
+
+/*
+Same question on gfg: Optimal Strategy For A Game 
+Link: https://www.geeksforgeeks.org/problems/optimal-strategy-for-a-game-1587115620/1
+*/
+
+// Tabulation (Bottom - Up Approach)
+class Solution{
+    public:
+    long long maximumAmount(int n, int arr[]){
+        
+        vector<vector<long long>> dp(n, vector<long long> (n, 0));
+        
+        for(long long i=n-1; i>=0; i--){
+            for(long long j=0; j<n; j++){
+                if(i > j){
+                    dp[i][j] = 0;
+                    continue;
+                }
+                long long chooseLeft = arr[i] + min((i+2 < n) ? dp[i+2][j] : 0, ((i+1 < n) && (j-1 >= 0)) ? dp[i+1][j-1] : 0);
+                long long chooseRight = arr[j] + min((j-2 >= 0) ? dp[i][j-2] : 0, ((i+1 < n) && (j-1 >= 0)) ? dp[i+1][j-1] : 0);
+                
+                dp[i][j] = max(chooseLeft, chooseRight);
+            }
+        }
+        return dp[0][n-1];
+    }
+};
