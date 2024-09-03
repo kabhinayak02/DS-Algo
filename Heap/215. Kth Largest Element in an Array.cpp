@@ -1,6 +1,7 @@
-
 /*
 Brute force 
+
+Sort the array and return the kth element
 
 tc: o(nlogn)
 sc: o(1)
@@ -17,6 +18,8 @@ public:
 
 /*
 Using Min-heap 
+
+Just storing the k element in th min heap and returning the top elemen
 
 tc: o(nlogk)
 sc: o(k)
@@ -36,6 +39,10 @@ public:
 
 /*
 Using Quick select
+
+Solve(n, L, R) -> This function partitions the array using the first element as the pivot. 
+It swaps elements to ensure elements smaller than the pivot are on its left and larger elements are on 
+its right. It returns the index of the pivot after partitioning.
 
 tc: o(n)
 sc: o(1)
