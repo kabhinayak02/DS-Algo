@@ -3,8 +3,8 @@ Solve using Bit Manipulation
 
 Can also solve using backtracting, see backtracking solution 
 
-Time Complexity: O(2^n)
-Space Complexity: O(2^n)
+Time Complexity: O(n*2^n)
+Space Complexity: O(n*2^n) [near about]]
 */
 
 class Solution {
