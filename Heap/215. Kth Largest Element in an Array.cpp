@@ -51,7 +51,7 @@ sc: o(1)
 
 class Solution {
 public:
-    int solve(vector<int>& nums, int L, int R){
+    int partition(vector<int>& nums, int L, int R){
         int P = nums[L];
         int i = L+1;
         int j = R;
@@ -69,7 +69,7 @@ public:
                 j--;
             }
         }
-        swap(nums[L], nums[j]);
+        swap(nums[L], nums[j]); // swap pivot with nums[j]. Now pivot is at its correct position.
         return j;
     }
     int findKthLargest(vector<int>& nums, int k) {
@@ -78,10 +78,10 @@ public:
         int L = 0;
         int R = n-1;
 
-        int pivot_idx = 0;
+        int pivot_idx = 0; // you can choose any index at pivot_index
 
         while(true){
-            pivot_idx = solve(nums, L, R);
+            pivot_idx = partition(nums, L, R);
 
             if(pivot_idx == k-1){
                 break;
