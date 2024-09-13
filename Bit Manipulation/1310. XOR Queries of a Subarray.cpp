@@ -25,6 +25,8 @@ public:
 /*
 Using bit manipulation 
 
+Hint: Use property of XOR. 
+
 tc: O(n + m), where n is the size of arr and m is the number of queries.
 sc: o(n) n -> size of queries
 */
