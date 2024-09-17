@@ -22,14 +22,14 @@ solve(0, [1, 2, 3])
 */
 class Solution {
 public:
-    void solve(int begin, vector<int>& nums, vector<vector<int>>& ans){
-        if(begin >= nums.size()){
+    void solve(int ind, vector<int>& nums, vector<vector<int>>& ans){
+        if(ind >= nums.size()){
             ans.push_back(nums);
         }
-        for(int i=begin; i<nums.size(); i++){
-            swap(nums[begin], nums[i]);
-            solve(begin+1, nums, ans);
-            swap(nums[begin], nums[i]);
+        for(int i=ind; i<nums.size(); i++){
+            swap(nums[ind], nums[i]);
+            solve(ind+1, nums, ans);
+            swap(nums[ind], nums[i]);
         }
     }
     vector<vector<int>> permute(vector<int>& nums) {
@@ -40,8 +40,12 @@ public:
 };
 
 /*
+Using unordered_set
 
+We don't need to pass the ind or i, because we always need to start our loop from 0.
+Because we are creating permutation, so we need to re-visit the same element. We can't skip it.
 
+tc: o(n.n!)
 */
 class Solution {
 private: 
