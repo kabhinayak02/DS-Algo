@@ -5,9 +5,10 @@ tc: o(logn)
 sc: o(logn)
 */
 string convert2Binary(int n){
+    if (n == 0) return "0"; // Handle case where n is 0
     string res = "";
-    while(n != 1){
-        if(n%2 == 1) res += '1';
+    while (n > 0) {
+        if (n % 2 == 1) res += '1';
         else res += '0';
         n /= 2;
     }
