@@ -1,7 +1,7 @@
 /*
 using level Order traversal (BFS)
 
-tc: o(n)
+tc: o(n) + o(n) 2 pass
 sc: o(n) worst case
 */
 class Solution {
@@ -45,6 +45,59 @@ public:
 
         // re-arrange the tree
         reArrangeTree(root, levelOrderSumArray, 0, 0);
+
+        return root;
+    }
+};
+
+
+/*
+single pass using bfs
+
+tc: o(n)
+sc: o(n)
+*/
+class Solution {
+public:
+    TreeNode* replaceValueInTree(TreeNode* root) {
+        if(root == NULL) return root;
+
+        queue<TreeNode*> q;
+        q.push(root);
+        int levelSum = root->val;
+
+        while(!q.empty()){
+            int n = q.size();
+            int nextLevelSum = 0;
+
+            while(n--){
+                TreeNode* node = q.front();
+                q.pop();
+
+                node->val = levelSum - node->val;
+
+                int siblingSum = 0;
+                if(node->left){
+                    siblingSum += node->left->val;
+                }
+                if(node->right){
+                    siblingSum += node->right->val;
+                }
+
+                if(node->left){
+                    nextLevelSum += node->left->val;
+                    node->left->val = siblingSum;
+                    q.push(node->left);
+                }
+
+                if(node->right){
+                    nextLevelSum += node->right->val;
+                    node->right->val = siblingSum;
+                    q.push(node->right);
+                }
+            }
+            levelSum = nextLevelSum;
+        }
 
         return root;
     }
