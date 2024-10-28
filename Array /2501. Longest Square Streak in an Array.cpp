@@ -54,3 +54,39 @@ public:
         return ans < 2 ? -1: ans;
     }
 };
+
+
+/*
+using binary search 
+
+tc: o(nlogn)
+sc: o(n)
+*/
+class Solution {
+public:
+    int longestSquareStreak(vector<int>& nums) {
+        int n = nums.size();
+        sort(nums.begin(), nums.end());
+        
+        vector<int> dp(n, 1);
+        for(int i=0; i<n; i++){
+            long long search = (long long)nums[i]*nums[i];
+            int start = i+1, end = n-1;
+            while(start <= end){
+                int mid = start + (end - start) / 2;
+                if(search == nums[mid]){
+                    dp[mid] = max(dp[mid], dp[i] + 1);
+                    break;
+                }
+                else if(search < nums[mid]){
+                    end = mid-1;
+                }
+                else {
+                    start = mid+1;
+                }
+            }
+        }
+        int ans = *max_element(dp.begin(), dp.end());
+        return ans < 2 ? -1 : ans;
+    }
+};
