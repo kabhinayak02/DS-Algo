@@ -75,8 +75,8 @@ public:
 /*
 using greedy (most optimal)
 
-tc: 
-sc:
+tc: o(nlogn)
+sc: o(1)
 */
 class Solution {
 public:
