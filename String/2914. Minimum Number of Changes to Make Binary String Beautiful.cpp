@@ -1,5 +1,7 @@
 /*
 
+need observation that make smallest possible even length substring
+
 tc: o(n)
 sc: o(1)
 */
