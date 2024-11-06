@@ -1,7 +1,7 @@
 /*
 
 gfg link: https://www.geeksforgeeks.org/problems/root-to-leaf-paths-sum/1
-
+same as Leetcode 129 
 using preorder traversal 
 
 tc: o(n)
