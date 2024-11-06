@@ -25,3 +25,29 @@ public:
         return ans;
     }
 };
+
+
+/*
+different style 
+
+*/
+class Solution {
+public:
+    int solve(TreeNode* root, int curr){
+        if(root == NULL) {
+            return 0;
+        }
+        curr = (curr*10) + root->val;
+        if(root->left == NULL && root->right == NULL){ // leaf node
+            return curr;
+        }
+        int l = solve(root->left, curr);
+        int r = solve(root->right, curr);
+
+        return l + r;
+
+    }
+    int sumNumbers(TreeNode* root) {
+        return solve(root, 0);
+    }
+};
