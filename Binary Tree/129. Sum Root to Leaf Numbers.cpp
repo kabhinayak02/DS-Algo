@@ -1,5 +1,12 @@
 
- #define ll long long
+/*
+using preorder traversal
+
+tc: O(n)
+sc: o(n)
+
+*/
+#define ll long long
 class Solution {
 public:
     int ans = 0;
