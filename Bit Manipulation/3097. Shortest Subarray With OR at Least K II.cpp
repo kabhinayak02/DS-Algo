@@ -29,10 +29,10 @@ public:
         vector<int> bitCount(32, 0);
 
         while(j < n){
-            update(nums[j], bitCount, 1);
+            update(nums[j], bitCount, 1); // add nums[j]
             while(i <= j && getDecimalFromBinary(bitCount) >= k){
                 ans = min(ans, j-i+1);
-                update(nums[i], bitCount, -1);
+                update(nums[i], bitCount, -1); // remove nums[j]
                 i++;
             }
             j++;
