@@ -2,6 +2,8 @@
 
 gfg link: https://www.geeksforgeeks.org/problems/sieve-of-eratosthenes5242/1
 
+tc: O(n*(log(log(n))))
+sc: o(n)
 */
 class Solution
 {
