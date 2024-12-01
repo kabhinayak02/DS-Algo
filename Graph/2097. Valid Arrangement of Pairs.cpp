@@ -1,5 +1,5 @@
 /*
-using Euler Path 
+using Euler Path (Hierholzer's Algorithm)
 
 find the indegree and outdegree of each pair elements and use dfs to find the path, starting node only have
 outdegree, no indegree and similarly end node have indegree with no outdegree.
