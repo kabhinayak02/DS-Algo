@@ -1,7 +1,15 @@
 /*
 Using Dijkstra 
 
-tc: o(n.mlog(n.m))
+You can to the next position only when curr time >= grid[row][col].
+
+Case 1: If you can'nt move and you are not in the starting position (i.e. 0,0)
+you can move back and fro to the same and previous position to increase the time. 
+
+Case 2: If You can'nt move and you are on the starting postion (0,0)
+means you can never move to the any next grid so return -1; 
+
+tc: E.log(V) -> o((n.m)log(n.m))
 sc: o(n.m)
 */
 class Solution {
@@ -42,8 +50,8 @@ public:
             visited[row][col] = true;
 
             for(auto &dir: directions){
-                int nrow = row + dir[0];
-                int ncol = col + dir[1];
+                int nrow = row + dir[0]; // new row
+                int ncol = col + dir[1]; // new col
 
                 if(nrow < 0 || nrow >= m || ncol < 0 || ncol >= n){
                     continue;
@@ -53,11 +61,11 @@ public:
                     pq.push({time+1, {nrow, ncol}});
                     ans[nrow][ncol] = time+1;
                 }
-                else if((grid[nrow][ncol] - time) % 2 == 0){
+                else if((grid[nrow][ncol] - time) % 2 == 0){ // even 
                     pq.push({grid[nrow][ncol]+1, {nrow, ncol}});
                     ans[nrow][ncol] = grid[nrow][ncol]+1;
                 }
-                else{
+                else{ // odd
                     pq.push({grid[nrow][ncol], {nrow, ncol}});
                     ans[nrow][ncol] = grid[nrow][ncol];
                 }
