@@ -1,7 +1,10 @@
 /*
 using dijkstra algorithm
 
-tc: o(E.log(V)) -> o(n.mlog(m.n))
+treat obstacle as a path weight or path cost, so whenever we pass the path with obstacle we have to pay the 
+cost of it i.e 1. Now implement the min heap with wt. 
+
+tc: o(E.log(V)) -> o((n.m)log(m.n))
 sc: o(m.n)
 */
 
@@ -35,7 +38,7 @@ public:
                 if(x < 0 || x >= m || y < 0 || y >= n){
                     continue;
                 }
-                int wt = grid[x][y] == 1 ? 1 : 0;
+                int wt = grid[x][y] == 1 ? 1 : 0; // If obstacle wt = 1 else 0
                 if(d + wt < ans[x][y]){
                     ans[x][y] = d + wt;
                     pq.push({d+wt, {x, y}});
