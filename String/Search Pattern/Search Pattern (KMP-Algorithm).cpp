@@ -1,5 +1,5 @@
 /*
-Naive Approach 
+Naive Approach: Every time mismatch happens start the pattern string again. 
 
 tc: o(n.m), n -> length of txt, m -> length of pat
 sc: o(m)
@@ -11,8 +11,26 @@ sc: o(m)
 /*
 KMP - Algo
 
-Step 1: Compute LPS (Longest prifix and suffix) -> pre-computing 
+Step 1: pre - compute LPS (Longest prifix and suffix) vector array.
+The LPS array (or vector) stores the length of the longest proper prefix which is 
+also a suffix for the substring of the pattern from index 0 to i.
 
+Proper Prefix: A prefix that is not the entire string.
+Proper Suffix: A suffix that is not the entire string.
+
+Purpose of LPS:
+When a mismatch occurs during pattern matching, the LPS array tells us the next position to start 
+comparing in the pattern, rather than starting from the beginning (index 0), as in the naive approach.
+
+Key Insight:
+Using the LPS array, we can "skip" unnecessary comparisons by jumping back to the previous 
+position in the pattern where a match could possibly continue.
+
+Step 2: Traverse the txt string and check for the pattern with computed LPS array 
+While traversing the txt string if mismatch happens at (txt, pat) -> (i, j) go back to the LPS[j-1] and check again for match 
+if its still not matching again do the same step, if j == 0, just move the i forward as no sub-string is matching.
+
+with using KMP Approach we improve the time complexity from o(n.m) to o(n+m)
 
 tc: o(n+m)
 sc: o(m)
@@ -72,4 +90,3 @@ class Solution {
         return ans;
     }
 };
-
