@@ -2,7 +2,7 @@
 using variable size sliding window 
 
 tc: o(n)
-sc: o(n)
+sc: o(1)
 */
 
 class Solution {
