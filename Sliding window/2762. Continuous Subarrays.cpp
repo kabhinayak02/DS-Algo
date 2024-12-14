@@ -64,3 +64,38 @@ public:
         return count;
     }
 };
+
+/*
+using multiset
+
+tc: o(nlogn)
+sc: o(n)
+*/
+class Solution {
+public:
+    long long continuousSubarrays(vector<int>& nums) {
+        int n = nums.size();
+
+        multiset<int> st;
+
+        int i = 0, j = 0;
+        long long ans = 0;
+
+        while(j < n){
+            st.insert(nums[j]);
+            while(st.size() > 1 && *st.rbegin() - *st.begin() > 2){
+                st.erase(st.find(nums[i]));
+                i++;
+            }
+            ans += (j-i+1);
+            j++;
+        }
+        return ans;
+    }
+};
+
+/*
+this can be done in tc: o(n)
+
+
+*/
