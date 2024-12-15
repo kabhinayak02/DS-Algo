@@ -58,38 +58,43 @@ sc: o(n)
 */
 class Solution {
 public:
-    #define P pair<double,int>
+    #define P pair<double, int>
     double maxAverageRatio(vector<vector<int>>& classes, int extraStudents) {
         int n = classes.size();
 
-        priority_queue<P> pq; // {max Delta, idx}
-        for(int i=0; i<n; i++){
-            double curr_PR = (double)classes[i][0]/classes[i][1];
-            double new_PR = (double)(classes[i][0]+1)/(classes[i][1]+1);
-            double delta = new_PR - curr_PR;
+        // Max-heap to prioritize classes by maximum delta
+        auto calcDelta = [](int pass, int total) {
+            double curr_PR = (double)pass / total;
+            double new_PR = (double)(pass + 1) / (total + 1);
+            return new_PR - curr_PR;
+        };
+
+        priority_queue<P> pq; // {delta, index}
+        for (int i = 0; i < n; i++) {
+            double delta = calcDelta(classes[i][0], classes[i][1]);
             pq.push({delta, i});
         }
-        while(extraStudents--){
-            P curr = pq.top();
+
+        // Allocate extra students
+        while (extraStudents--) {
+            auto [delta, idx] = pq.top();
             pq.pop();
 
-            double delta = curr.first;
-            int idx = curr.second;
-
+            // Update the class with an extra student
             classes[idx][0]++;
             classes[idx][1]++;
 
-            double curr_PR = (double)classes[idx][0]/classes[idx][1];
-            double new_PR = (double)(classes[idx][0]+1)/(classes[idx][1]+1);
-            double newDelta = new_PR - curr_PR;
+            // Recalculate delta and push back into the heap
+            double newDelta = calcDelta(classes[idx][0], classes[idx][1]);
             pq.push({newDelta, idx});
-
         }
 
+        // Calculate the final average pass ratio
         double ans = 0.0;
-        for(int i=0; i<n; i++){
-            ans += (double)classes[i][0]/classes[i][1];
+        for (int i = 0; i < n; i++) {
+            ans += (double)classes[i][0] / classes[i][1];
         }
-        return ans/n;
+
+        return ans / n;
     }
 };
