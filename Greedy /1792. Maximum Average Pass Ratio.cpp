@@ -53,7 +53,7 @@ using heap
 
 optimised the searching maxi delta with o(1) instead of o(n) as in the above solution 
 
-tc: o(nlogn)
+tc: o(extraStudentslogn)
 sc: o(n)
 */
 class Solution {
