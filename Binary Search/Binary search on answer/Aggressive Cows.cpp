@@ -5,8 +5,8 @@ using binary search
 implement binary search on given possible range of answer
 check if possible maxi. dist. (mid) is possible to place for cows if yes, move the binary search to greater mid 
 
-tc:
-sc:
+tc: o(nlogn)
+sc: o(1)
 
 */
 class Solution {
