@@ -1,7 +1,7 @@
 /*
 using segment tree
 
-tc: o(q.log(n))
+tc: o(log(n))
 sc: o(n)
 */
 class NumArray {
