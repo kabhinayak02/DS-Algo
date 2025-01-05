@@ -4,7 +4,7 @@ Brute force
 tc: o(n*q)
 sc: o(1)
 */
-void rangeAddition(vector<int>& arr, vector<vector>& queries){
+void rangeAddition(vector<int>& arr, vector<vector<int>>& queries){
     int n = arr.size();
 
     for(auto& query: queries){
@@ -28,7 +28,7 @@ Difference array approach
 tc: o(n+q)
 sc: o(1)
 */
-void rangeAddition(vector<int>& arr, vector<vector>& queries){
+void rangeAddition(vector<int>& arr, vector<vector<int>>& queries){
     int n = arr.size();
 
     for(auto& query: queries){
