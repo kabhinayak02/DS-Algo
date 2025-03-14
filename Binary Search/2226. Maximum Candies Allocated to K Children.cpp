@@ -33,7 +33,7 @@ public:
 using binary search
 
 
-tc: o(logn)
+tc: o(log(maxC))
 sc: o(1)
 */
 class Solution {
